@@ -1,0 +1,19 @@
+.taskTextContainer{
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 3px 0;
+    color: white;
+}
+
+.taskPending{
+    background-color: tomato;    
+}
+
+.taskDone{
+    background-color: green;    
+}
+
+.ourIcon{
+    --sds-c-button-text-color: white;
+}

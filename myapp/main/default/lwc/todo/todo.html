@@ -1,0 +1,23 @@
+<template>
+    <lightning-layout class="Container">
+        <lightning-layout-item>
+            <div class="slds-text-heading_large todoHeading">
+                Todo app
+            </div>
+        </lightning-layout-item>
+        <lightning-layout class="askName">
+            <lightning-input placeholder="Enter your name"></lightning-input>
+            <div class="buttonContainer">
+                <lightning-button-icon icon-name="utility:save" onclick={printName}>
+                </lightning-button-icon>
+            </div>
+            <div class="listContainer">
+                <template for:each={todos} for:item="todo">
+                    <c-todo-item key={todo.id} todo={todo}></c-todo-item>
+                </template>
+            </div>
+        
+        </lightning-layout>
+    </lightning-layout>
+    
+</template>

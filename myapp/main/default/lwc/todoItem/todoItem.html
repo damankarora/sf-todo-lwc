@@ -1,0 +1,20 @@
+<template>
+    <lightning-layout>
+        <lightning-layout-item>
+            
+            <template if:true={todo.done}>
+                <div class="taskTextContainer taskDone">
+                    {todo.task}
+                </div>
+            </template>
+
+            <template if:false={todo.done}>
+                <div class="taskTextContainer taskPending">
+                    {todo.task}
+                    <lightning-button-icon icon-name="utility:success" onclick={handleDone} class="ourIcon"></lightning-button-icon>
+                </div>
+            </template>
+            
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

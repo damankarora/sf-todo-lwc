@@ -1,0 +1,29 @@
+.askName{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonContainer{
+    width: 100%;
+    text-align: center;
+}
+
+.buttonContainer button{
+    background-color: white;
+}
+
+.listContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.todoHeading{
+    margin: 10px 0;
+}
+
+.Container{
+    display: flex;
+    flex-direction: column;
+}

@@ -2,7 +2,6 @@ import addNewTask from '@salesforce/apex/TodoController.addNewTask';
 import getTasks from '@salesforce/apex/TodoController.getTasks';
 import { LightningElement, track } from 'lwc';
 
-
 export default class Todo extends LightningElement {
 
     @track todos=[];
@@ -13,8 +12,7 @@ export default class Todo extends LightningElement {
 
     printName(){
         let inputField = this.template.querySelector('lightning-input');
-        
-        addNewTask({ task: 'Done task', done: true })
+            
         
         
         addNewTask({task: inputField.value, done: false}).then(()=>{
@@ -47,6 +45,10 @@ export default class Todo extends LightningElement {
             }
             return todo;
         })
+    }
+
+    updateHandler(){
+        this.fetchTodos();
     }
 
     deleteTodo(id_to_delete){

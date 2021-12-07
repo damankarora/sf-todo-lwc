@@ -13,7 +13,7 @@
             </div>
             <div class="listContainer">
                 <template for:each={todos} for:item="todo">
-                    <c-todo-item key={todo.id} todo={todo}></c-todo-item>
+                    <c-todo-item key={todo.id} todo={todo} onupdate={updateHandler}></c-todo-item>
                 </template>
             </div>
         

@@ -3,8 +3,7 @@ public with sharing class TodoController {
 
     @AuraEnabled    
 	public static List<ToDos> getTasks(){                     
-        List<SObject> todos = [SELECT Name,Done__c FROM ToDo__c];
-        System.debug(todos[0]);
+        List<SObject> todos = [SELECT Name,Done__c FROM ToDo__c];        
 
         List<ToDos> todos_to_return = new List<ToDos>();
 
@@ -34,6 +33,7 @@ public with sharing class TodoController {
         return item_to_add.Id;
     }
 
+    @AuraEnabled
     public static Boolean deleteTask(String id){
         try{
             SObject item_to_delete = (Sobject) Type.forName('ToDo__c').newInstance();
@@ -45,7 +45,8 @@ public with sharing class TodoController {
         }
     }
 
-    public static Boolean updateTask(String id, String done){
+    @AuraEnabled
+    public static Boolean updateTask(String id, Boolean done){
         try{
             SObject item_to_update = (Sobject) Type.forName('ToDo__c').newInstance();
             item_to_update.Id = id;
@@ -55,6 +56,8 @@ public with sharing class TodoController {
             return true;
             
         }catch(DmlException err){
+            System.debug('error occured');            
+            System.debug(err.getMessage());
             return false;
         }
     }

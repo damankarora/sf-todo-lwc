@@ -4,10 +4,37 @@ import { LightningElement, track } from 'lwc';
 
 export default class Todo extends LightningElement {
 
-    @track todos=[];
+    todos=[];
+
+    
+
+    @track pendingTodos = [];
+    @track doneTodos = [];
 
     connectedCallback(){
         this.fetchTodos();
+        this.draggables = this.template.querySelectorAll('.draggable');
+        this.containers = this.template.querySelectorAll('.dropContainer');
+        
+    }
+
+    renderedCallback(){
+        // Configuring Drag and Drop
+        
+    }
+
+    touchyEventHandler(e){
+        let currectContainer = e.currentTarget;
+        e.preventDefault();        
+        currectContainer.appendChild(this.template.querySelector('.dragging'));
+    }
+
+    handleDragStart(e){        
+        e.target.classList.add('dragging');
+    }
+
+    handleDragEnd(e){
+        e.target.classList.remove('dragging');
     }
 
     printName(){
@@ -33,6 +60,12 @@ export default class Todo extends LightningElement {
             this.todos = todosToAdd;
             console.log("Tasks fetched");
             console.log(this.todos);
+
+            this.pendingTodos = this.todos.filter((task)=> !task.done);
+            this.doneTodos = this.todos.filter((task)=> task.done);
+
+            
+
         }).catch((err)=>{
             console.log("Err", err);
         })

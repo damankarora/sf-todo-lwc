@@ -8,12 +8,22 @@
         <lightning-layout class="askName">
             <lightning-input placeholder="Enter your name"></lightning-input>
             <div class="buttonContainer">
-                <lightning-button-icon icon-name="utility:save" onclick={printName}>
-                </lightning-button-icon>
+                <button onclick={printName} class="addButton">
+                    Add
+                </button>                
             </div>
-            <div class="listContainer">
-                <template for:each={todos} for:item="todo">
-                    <c-todo-item key={todo.id} todo={todo} onupdate={updateHandler}></c-todo-item>
+            <div class="listContainer dropContainer" ondragover={touchyEventHandler}>
+                <h2>Pending</h2>
+                <template for:each={pendingTodos} for:item="todo">
+                    <c-todo-item key={todo.id} todo={todo} onupdate={updateHandler} class="todoItem draggable" draggable="true"
+                     ondragstart={handleDragStart} ondragend={handleDragEnd}></c-todo-item>
+                </template>
+            </div>
+            <div class="listContainer dropContainer" ondragover={touchyEventHandler}>
+                <h2>Completed</h2>
+                <template for:each={doneTodos} for:item="todo">
+                    <c-todo-item key={todo.id} todo={todo} onupdate={updateHandler} class="todoItem draggable" draggable="true"
+                     ondragstart={handleDragStart} ondragend={handleDragEnd}></c-todo-item>
                 </template>
             </div>
         

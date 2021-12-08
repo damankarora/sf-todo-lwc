@@ -5,16 +5,20 @@
             
             <template if:true={todo.done}>
                 <div class="taskTextContainer taskDone">
-                    {todo.task}
-                    <lightning-button-icon icon-name="utility:delete" onclick={handleDelete} class="ourIcon"></lightning-button-icon>
+                    <span>{todo.task}</span>
+                    <!-- <button onclick={handleDelete}>
+                        <lightning-icon icon-name="utility:delete" class="ourIcon"></lightning-icon>
+                    </button> -->
+                    <lightning-button-icon icon-name="utility:ban" onclick={handleDone} class="ourIcon"></lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:delete" onclick={handleDelete} class="ourIcon deleteIcon"></lightning-button-icon>
                 </div>
             </template>
 
             <template if:false={todo.done}>
                 <div class="taskTextContainer taskPending">
-                    {todo.task}
+                    <span>{todo.task}</span>
                     <lightning-button-icon icon-name="utility:success" onclick={handleDone} class="ourIcon"></lightning-button-icon>
-                    <lightning-button-icon icon-name="utility:delete" onclick={handleDelete} class="ourIcon"></lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:delete" onclick={handleDelete} class="ourIcon deleteIcon"></lightning-button-icon>
                 </div>
             </template>
             

@@ -5,10 +5,7 @@ import deleteTask from '@salesforce/apex/TodoController.deleteTask';
 export default class TodoItem extends LightningElement {
     @api todo;      
 
-    handleDone(){
-        console.log("Updating") 
-        console.log(this.todo.id);
-        console.log(!this.todo.done);
+    handleDone(){        
         updateTask({id: this.todo.id, done: !this.todo.done}).then((done)=>{
             if(done){
                 console.log("Done")

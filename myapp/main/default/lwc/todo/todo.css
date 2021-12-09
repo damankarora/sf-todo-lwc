@@ -30,6 +30,7 @@
 
 .todoHeading{
     margin: 10px 0;
+    text-align: center;
 }
 
 .Container{
@@ -41,11 +42,16 @@
 .addButton{
     padding: 2px 10px;
     font-size: 20px;
+    margin: 4px 10px;
     color: white;
     background-color: green;
     outline: none;
     border: none;
     border-radius: 5px;
+}
+
+.reordering{
+    background-color: rgb(87, 87, 221);
 }
 
 .dragging{

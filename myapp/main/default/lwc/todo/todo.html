@@ -2,27 +2,28 @@
     <lightning-layout class="Container">
         <lightning-layout-item>
             <div class="slds-text-heading_large todoHeading">
-                Todo app
+                Todo Component
             </div>
         </lightning-layout-item>
         <lightning-layout class="askName">
             <lightning-input placeholder="Enter your name"></lightning-input>
             <div class="buttonContainer">
-                <button onclick={printName} class="addButton">
+                <button onclick={addTodo} class="addButton">
                     Add
-                </button>                
+                </button>  
+                <button onclick={enableDrag} class="addButton">Re-order</button>
             </div>
-            <div class="listContainer dropContainer" ondragover={touchyEventHandler}>
+            <div class="listContainer dropContainer pendingContainer" ondragover={dragoverEventHandler}>
                 <h2>Pending</h2>
                 <template for:each={pendingTodos} for:item="todo">
-                    <c-todo-item key={todo.id} todo={todo} onupdate={updateHandler} class="todoItem draggable" draggable="true"
-                     ondragstart={handleDragStart} ondragend={handleDragEnd}></c-todo-item>
+                    <c-todo-item key={todo.id} todo={todo} onupdate={updateHandler} class="todoItem draggable"
+                     ondragstart={handleDragStart} ondragend={handleDragEnd} ondragstarted={customDragHandler}></c-todo-item>
                 </template>
             </div>
-            <div class="listContainer dropContainer" ondragover={touchyEventHandler}>
+            <div class="listContainer dropContainer doneContainer" ondragover={dragoverEventHandler}>
                 <h2>Completed</h2>
                 <template for:each={doneTodos} for:item="todo">
-                    <c-todo-item key={todo.id} todo={todo} onupdate={updateHandler} class="todoItem draggable" draggable="true"
+                    <c-todo-item key={todo.id} todo={todo} onupdate={updateHandler} class="todoItem draggable" 
                      ondragstart={handleDragStart} ondragend={handleDragEnd}></c-todo-item>
                 </template>
             </div>

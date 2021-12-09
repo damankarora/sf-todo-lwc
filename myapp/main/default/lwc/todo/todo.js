@@ -214,17 +214,23 @@ export default class Todo extends LightningElement {
         let enable = true;
         if(this.dragAvailable){
             enable = false;
+            this.dragAvailable = false;
             e.target.classList.remove('reordering');
-            e.target.innerText = 'Re-order'
+            e.target.innerText = 'Re-order'            
         }else{
             this.dragAvailable = true;
             e.target.classList.add('reordering');
-            e.target.innerText = 'Done';
+            e.target.innerText = 'Done';            
         }
 
 
         for(let i = 0 ; i < draggables.length; i ++){
             draggables[i].setAttribute('draggable', enable);
+            if (enable) { 
+                draggables[i].classList.add('draggableEnabled');
+            }else{
+                draggables[i].classList.remove('draggableEnabled');
+            }
         }
     }
 }

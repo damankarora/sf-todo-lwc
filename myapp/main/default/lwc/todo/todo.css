@@ -60,10 +60,12 @@
 }
 
 .draggable{
-    cursor: move;
-    
+    cursor: pointer;    
 }
 
+.draggableEnabled{
+    cursor: move;
+}
 
 .todoItem{
     width: 95%;

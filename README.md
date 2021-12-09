@@ -26,3 +26,6 @@ The component is currently exposed to Lightning Homepage.
 1. Open a Lightning app and go to home page.
 2. Click the ⚙️ icon and select Edit Page.
 3. Scroll down and add the custom lightning component to your page.
+
+## Objects
+The components uses a custom object named "ToDo" which has an API name "ToDo__c" It has the standard Name field. A custom field named "Done" (checkbox) is also used with an API name of "Done__c".

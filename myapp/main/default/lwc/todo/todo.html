@@ -17,7 +17,7 @@
                 <h2>Pending</h2>
                 <template for:each={pendingTodos} for:item="todo">
                     <c-todo-item key={todo.id} todo={todo} onupdate={updateHandler} class="todoItem draggable"
-                     ondragstart={handleDragStart} ondragend={handleDragEnd} ondragstarted={customDragHandler}></c-todo-item>
+                     ondragstart={handleDragStart} ondragend={handleDragEnd}></c-todo-item>
                 </template>
             </div>
             <div class="listContainer dropContainer doneContainer" ondragover={dragoverEventHandler}>

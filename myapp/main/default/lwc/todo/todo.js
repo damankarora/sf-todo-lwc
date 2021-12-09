@@ -194,26 +194,8 @@ export default class Todo extends LightningElement {
         })
     }
 
-    updateTodo(id_to_change){
-        this.todos = this.todos.map((todo)=>{
-            if(todo.id == id_to_change){
-                todo.id = !todo.id;
-            }
-            return todo;
-        })
-    }
-
     updateHandler(){
         this.fetchTodos();
-    }
-
-    deleteTodo(id_to_delete){
-        this.todos = this.todos.filter((todo)=> todo.id !== id_to_delete);
-    }
-    
-    customDragHandler(e){
-        console.log("Drag start catched");
-        this.draggingId = e.detail;
     }
 
 

@@ -1,18 +1,31 @@
-# Salesforce DX Project: Next Steps
+# Salesforce Todo LWC.
+A simple Todo Lightning Web Component which shows basic Drag and drop feature.
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+## Requirements
+1. SFDX CLI
 
-## How Do You Plan to Deploy Your Changes?
+## How to run?
+Clone the repository
+`git clone https://github.com/damankarora/sf-todo-lwc.git`
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+Change Directory
+`cd sf-todo-lwc`
 
-## Configure Your Salesforce DX Project
+Create new Scratch org
+`sfdx force:org:create -s -f config/project-scratch-def.json`
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+Push Source code to the Scratch org
+`sfdx force:source:push`
 
-## Read All About It
+Open the Scratch org
+`sfdx force:org:open`
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+## How to use the component?
+
+The component is currently exposed to Lightning Homepage. 
+1. Open a Lightning app and go to home page.
+2. Click the ⚙️ icon and select Edit Page.
+3. Scroll down and add the custom lightning component to your page.
+
+## Objects
+The components uses a custom object named "ToDo" which has an API name "ToDo__c" It has the standard Name field. A custom field named "Done" (checkbox) is also used with an API name of "Done__c".

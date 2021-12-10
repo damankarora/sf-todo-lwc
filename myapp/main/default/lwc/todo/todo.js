@@ -1,5 +1,6 @@
 import addNewTask from '@salesforce/apex/TodoController.addNewTask';
 import getTasks from '@salesforce/apex/TodoController.getTasks';
+import updateTaskOrder from '@salesforce/apex/TodoController.updateTaskOrder';
 import { LightningElement, track } from 'lwc';
 
 export default class Todo extends LightningElement {
@@ -165,7 +166,7 @@ export default class Todo extends LightningElement {
             
         
         
-        addNewTask({task: inputField.value, done: false}).then(()=>{
+        addNewTask({task: inputField.value, done: false, order: this.pendingTodos.length + 1}).then(()=>{
             this.fetchTodos();
         }).catch((err)=>{
             console.log("SOMETHING WENT WRONG");
@@ -216,7 +217,9 @@ export default class Todo extends LightningElement {
             enable = false;
             this.dragAvailable = false;
             e.target.classList.remove('reordering');
-            e.target.innerText = 'Re-order'            
+            e.target.innerText = 'Re-order'  
+
+            this.saveOrdering();
         }else{
             this.dragAvailable = true;
             e.target.classList.add('reordering');
@@ -232,5 +235,28 @@ export default class Todo extends LightningElement {
                 draggables[i].classList.remove('draggableEnabled');
             }
         }
+    }
+
+    saveOrdering(){        
+        let updatedOrderTodos = this.pendingTodos.map((todo, index) => this.mapOrdering(todo, index));
+        updatedOrderTodos.push(...this.doneTodos.map((todo, index)=>this.mapOrdering(todo, index)));
+
+        updateTaskOrder({ tasks_received: updatedOrderTodos}).then((done)=>{
+            if(done){
+                console.log(done);
+                console.log("ORDER UPDATED SUCCESSFULLY");
+            }else{
+                console.log("SOMETHING WENT WRONG.")
+            }
+        }).catch((err)=>{
+            console.log("ERROR OCCURED", err);
+        })
+
+    }
+
+    mapOrdering(todo, index){
+        todo.order = index + 1;
+        console.log(todo.order, todo.task);
+        return JSON.stringify(todo);
     }
 }

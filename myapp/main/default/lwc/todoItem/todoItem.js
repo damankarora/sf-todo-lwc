@@ -1,5 +1,5 @@
 import { LightningElement, api } from 'lwc';
-import updateTask from '@salesforce/apex/TodoController.updateTask';
+import updateTaskStatus from '@salesforce/apex/TodoController.updateTaskStatus';
 import deleteTask from '@salesforce/apex/TodoController.deleteTask';
 
 export default class TodoItem extends LightningElement {
@@ -10,7 +10,7 @@ export default class TodoItem extends LightningElement {
     }
 
     handleDone(){        
-        updateTask({id: this.todo.id, done: !this.todo.done}).then((done)=>{
+        updateTaskStatus({id: this.todo.id, done: !this.todo.done}).then((done)=>{
             if(done){
                 console.log("Done")
                 this.sendUpdateEvent();

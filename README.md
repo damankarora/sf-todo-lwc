@@ -28,4 +28,9 @@ The component is currently exposed to Lightning Homepage.
 3. Scroll down and add the custom lightning component to your page.
 
 ## Objects
-The components uses a custom object named "ToDo" which has an API name "ToDo__c" It has the standard Name field. A custom field named "Done" (checkbox) is also used with an API name of "Done__c".
+The components uses a custom object named "ToDo" which has an API name "ToDo__c" It has the standard Name field and following custom fields
+> A custom field named "Done" (checkbox) is also used with an API name of "Done__c". 
+
+> Another custom field named "Order" (Number) is used with API name "Order__c".
+
+You can create custom objects and fields using the Salesforce Object manager in your org.

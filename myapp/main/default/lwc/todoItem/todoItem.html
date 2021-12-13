@@ -1,14 +1,11 @@
 <template>
     <lightning-layout>
         <!-- TODO: Improve UI  -->
-        <lightning-layout-item>
+        <lightning-layout-item class="taskLayoutItem">
             
             <template if:true={todo.done}>
                 <div class="taskTextContainer taskDone">
-                    <span>{todo.task}</span>
-                    <!-- <button onclick={handleDelete}>
-                        <lightning-icon icon-name="utility:delete" class="ourIcon"></lightning-icon>
-                    </button> -->
+                    <p>{todo.task}</p>
                     <lightning-button-icon icon-name="utility:ban" onclick={handleDone} class="ourIcon"></lightning-button-icon>
                     <lightning-button-icon icon-name="utility:delete" onclick={handleDelete} class="ourIcon deleteIcon"></lightning-button-icon>
                 </div>
@@ -16,7 +13,7 @@
 
             <template if:false={todo.done}>
                 <div class="taskTextContainer taskPending">
-                    <span>{todo.task}</span>
+                    <p>{todo.task}</p>
                     <lightning-button-icon icon-name="utility:success" onclick={handleDone} class="ourIcon"></lightning-button-icon>
                     <lightning-button-icon icon-name="utility:delete" onclick={handleDelete} class="ourIcon deleteIcon"></lightning-button-icon>
                 </div>

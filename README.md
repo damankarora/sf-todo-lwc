@@ -5,20 +5,35 @@ A simple Todo Lightning Web Component which shows basic Drag and drop feature.
 1. SFDX CLI
 
 ## How to run?
-Clone the repository
+Clone the repository <br />
 `git clone https://github.com/damankarora/sf-todo-lwc.git`
 
-Change Directory
+Change Directory <br />
 `cd sf-todo-lwc`
 
-Create new Scratch org
-`sfdx force:org:create -s -f config/project-scratch-def.json`
+Create new Scratch org <br />
+`sfdx force:org:create -f config/project-scratch-def.json -a todo username=my-todo@sf.com`
 
-Push Source code to the Scratch org
-`sfdx force:source:push`
+Push Source code to the Scratch org <br />
+`sfdx force:source:push -u todo`
 
-Open the Scratch org
-`sfdx force:org:open`
+Open the Scratch org <br />
+`sfdx force:org:open -u todo`
+
+Make sure to add required custom objects and fields to your org. (See below)
+
+
+## How to test?
+To run the tests after making changes: <br />
+`sfdx force:apex:test:run`
+
+To check the codecoverage <br />
+`sfdx force:apex:test:run -c -r human`
+
+## How to deploy?
+
+We can deploy our source code with: <br />
+`sfdx force:source:deploy -p myapp -u todo`
 
 ## How to use the component?
 

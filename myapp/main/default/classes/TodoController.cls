@@ -21,29 +21,44 @@ public with sharing class TodoController {
 
     @AuraEnabled
     public static String addNewTask(String task,Boolean done, Integer order){
-        ToDos task_to_add = new ToDos();
-        task_to_add.task = task;
-        task_to_add.done = done;   
-        task_to_add.order = order;     
 
-        SObject item_to_add = (Sobject) Type.forName('ToDo__c').newInstance();
-        item_to_add.put('Name', task_to_add.task);
-        item_to_add.put('Done__c', task_to_add.done);
-        item_to_add.put('Order__c', task_to_add.order);
+        try{
+             // SObject item_to_add = (Sobject) Type.forName('ToDo__c').newInstance();
+            ToDo__c item_to_add = new ToDo__c();
+            item_to_add.Name = task;
+            item_to_add.Done__c = done;
+            item_to_add.Order__c = order;
 
-        insert item_to_add;
+            insert item_to_add;
 
-        return item_to_add.Id;
+            return item_to_add.Id;
+        }catch(DmlException err){
+            System.debug('DML error occured');            
+            System.debug(err.getMessage());
+            return 'ERROR';
+        }
+        catch(Exception e){
+            System.debug('Exception occured');
+            System.debug(e.getMessage());
+            return 'ERROR';
+        }
+       
     }
 
     @AuraEnabled
     public static Boolean deleteTask(String id){
         try{
-            SObject item_to_delete = (Sobject) Type.forName('ToDo__c').newInstance();
+            // SObject item_to_delete = (Sobject) Type.forName('ToDo__c').newInstance();
+            ToDo__c item_to_delete = new ToDo__c();
             item_to_delete.Id = id;
             delete item_to_delete;        
             return true;
         }catch(DmlException err){
+            return false;
+        }
+        catch(Exception e){
+            System.debug('Exception occured');
+            System.debug(e.getMessage());
             return false;
         }
     }
@@ -51,9 +66,10 @@ public with sharing class TodoController {
     @AuraEnabled
     public static Boolean updateTaskStatus(String id, Boolean done){
         try{
-            SObject item_to_update = (Sobject) Type.forName('ToDo__c').newInstance();
+            // SObject item_to_update = (Sobject) Type.forName('ToDo__c').newInstance();
+            ToDo__c item_to_update = new ToDo__c();
             item_to_update.Id = id;
-            item_to_update.put('Done__c', done);
+            item_to_update.Done__c=done;
 
             update item_to_update;
             return true;
@@ -61,6 +77,11 @@ public with sharing class TodoController {
         }catch(DmlException err){
             System.debug('error occured');            
             System.debug(err.getMessage());
+            return false;
+        }
+        catch(Exception e){
+            System.debug('Exception occured');
+            System.debug(e.getMessage());
             return false;
         }
     }
@@ -73,10 +94,11 @@ public with sharing class TodoController {
 
             for(String task : tasks_received){
                 ToDos converted_task = (ToDos)JSON.deserialize(task, ToDos.class);
-                SObject updated_task = (Sobject) Type.forName('ToDo__c').newInstance();
+                // SObject updated_task = (Sobject) Type.forName('ToDo__c').newInstance();
+                ToDo__c updated_task = new ToDo__c();
                 updated_task.Id = converted_task.id;
-                updated_task.put('Done__c', converted_task.done);
-                updated_task.put('Order__c', converted_task.order);
+                updated_task.Done__c = converted_task.done;
+                updated_task.Order__c = converted_task.order;
 
                 tasks_to_update.add(updated_task);                
             }
@@ -86,11 +108,16 @@ public with sharing class TodoController {
             System.debug(e.getMessage());
             return false;
         }
+        catch(Exception e){
+            System.debug('Exception occured');
+            System.debug(e.getMessage());
+            return false;
+        }
     }
 
 
 
-    class ToDos{
+    public class ToDos{
         @AuraEnabled        
         public String id;
         @AuraEnabled        

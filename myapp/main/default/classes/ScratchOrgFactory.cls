@@ -24,14 +24,16 @@ public with sharing class ScratchOrgFactory {
         }
         HttpRequest req = new HttpRequest();
         
-        String usernameLogin = 'damankumar@geminidsystems.com';
-		String passwordLogin = 'Daman6232';
+        // Tried authenticating using username & password
+
+        // String usernameLogin = '<username>';
+		// String passwordLogin = '<secret>';
       
-		Blob headerValue = Blob.valueOf(usernameLogin + ':' + passwordLogin);
-		String authorizationHeader = 'BASIC ' +
-		EncodingUtil.base64Encode(headerValue);
+		// Blob headerValue = Blob.valueOf(usernameLogin + ':' + passwordLogin);
+		// String authorizationHeader = 'BASIC ' +
+		// EncodingUtil.base64Encode(headerValue);
         
-        req.setHeader('Authorization', authorizationHeader);
+        // req.setHeader('Authorization', authorizationHeader);
 		
 
         String body = JSON.serialize(sInfo);

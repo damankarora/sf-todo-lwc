@@ -151,7 +151,7 @@ export default class Todo extends LightningElement {
                 return closest
             }
         }, { offset: Number.NEGATIVE_INFINITY }).element
-}
+    }
 
     handleDragStart(e){        
         e.target.classList.add('dragging');
